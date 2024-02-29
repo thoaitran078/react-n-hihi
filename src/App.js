@@ -2,11 +2,47 @@ import React, { useState } from 'react';
 import { Layout, Menu, Modal, Input, Button } from 'antd';
 import 'antd/dist/reset.css';
 import { Steps } from 'antd';
+//layout
+//import type { MenuProps } from 'antd';
+import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+import { Breadcrumb,  theme } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
+//const { Header, Content, Footer } = Layout;
+///////////////*
+/*
+const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
+  key,
+  label: `nav ${key}`,
+}));
+*/
+const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
+  (icon, index) => {
+    const key = String(index + 1);
 
+    return {
+      key: `sub${key}`,
+      icon: React.createElement(icon),
+      label: `Mục ${key}`,
 
-const { Header, Content, Footer } = Layout;
+      children: new Array(4).fill(null).map((_, j) => {
+        const subKey = index * 4 + j + 1;
+        return {
+          key: subKey,
+          label: `Lựa chọn ${subKey}`,
+        };
+      }),
+    };
+  },
+);
 
+//////
 const App = () => {
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
+//
+
   const [loginVisible, setLoginVisible] = useState(false);
   const [registerVisible, setRegisterVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -51,7 +87,13 @@ const App = () => {
           </Menu>
         </div>
       </Header>
-      <Content style={{ padding: '50px' }}>
+      <Breadcrumb style={{ margin: '16px 0',padding: '15px' ,text: '500px' }}>
+          <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
+          <Breadcrumb.Item>1</Breadcrumb.Item>
+          <Breadcrumb.Item>2</Breadcrumb.Item>
+        </Breadcrumb>
+      <Content style={{ padding: '0px' }}>
+        
         {currentPage === 'home' && (
           <div>
             <h1>Chào mừng đến với trang bán hàng</h1>
@@ -71,7 +113,7 @@ const App = () => {
         )}
         {currentPage === 'products' && (
           <div>
-            <h1>Giới thiệu</h1>
+            <h1>Sản phẩm</h1>
             <p>Đây là trang đổ dữ liệu sản phẩm.</p>
             <Steps
     size="small"
@@ -92,7 +134,23 @@ const App = () => {
             {/* Thêm nội dung giới thiệu */}
           </div>
         )}
+
+<Layout
+          style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}
+        >
+          <Sider style={{ background: colorBgContainer }} width={200}>
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['1']}
+              defaultOpenKeys={['sub1']}
+              style={{ height: '100%' }}
+              items={items2}
+            />
+          </Sider>
+          <Content style={{ padding: '0 24px', minHeight: 280 }}>Content</Content>
+        </Layout>
       </Content>
+      
       <Footer style={{ position: 'fixed', bottom: 0, width: '100%', textAlign: 'center' }}>
         Bản quyền ©2024. Trang bán hàng. All rights reserved.
       </Footer>
