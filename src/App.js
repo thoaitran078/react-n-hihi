@@ -93,9 +93,9 @@ const App = () => {
         
         {currentPage === 'home' && (
           <div>
-            <h1>Chào mừng đến với trang bán hàng</h1>
-            <p>Xin chào! Đây là trang bán hàng của chúng tôi.</p>
-            <p>Hãy khám phá các sản phẩm tuyệt vời mà chúng tôi cung cấp.</p>
+            <h1>Chào mừng đến với trang bán hàng của Thoại</h1>
+            <p>Xin chào! Đây là trang giao diện của Thoại.</p>
+            <p>Hãy khám phá các sản phẩm tuyệt vời mà Thoại cung cấp.</p>
             <div className="product-list">
               {/* Hiển thị danh sách sản phẩm */}
             </div>
@@ -104,6 +104,7 @@ const App = () => {
         {currentPage === 'about' && (
           <div>
             <h1>Giới thiệu</h1>
+            <p>Xin chào! dưới Đây là trang layout phục vụ admin , gắn đỡ.</p>
             <Layout
           style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}
         >
@@ -124,7 +125,7 @@ const App = () => {
         {currentPage === 'products' && (
           <div>
             <h1>Sản phẩm</h1>
-            <p>Đây là trang đổ dữ liệu sản phẩm.</p>
+            <p>Đây là trang đổ dữ liệu sản phẩm đó mấy th ***.</p>
             
 
             {/* Thêm nội dung giới thiệu */}
