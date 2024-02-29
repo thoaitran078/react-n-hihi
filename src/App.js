@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Modal, Input, Button } from 'antd';
 import 'antd/dist/reset.css';
+import { Steps } from 'antd';
+
 
 const { Header, Content, Footer } = Layout;
 
@@ -17,6 +19,13 @@ const App = () => {
   const handleLogin = () => {
     // Xử lý đăng nhập tại đây
     console.log('Đăng nhập với tên người dùng:', username, 'và mật khẩu:', password);
+    // Sau khi xử lý đăng nhập, bạn có thể chuyển đến trang chính hoặc thực hiện các hành động khác
+    // Ví dụ: history.push('/dashboard');
+  };
+
+  const handleRe = () => {
+    // Xử lý đăng nhập tại đây
+    console.log('Đăng nhập với tên người dùng:', username, 'và mật khẩu:', password,'Đăng nhập với tên người dùng:', email, 'và mật khẩu:', phoneNumber, 'và mật khẩu:', address);
     // Sau khi xử lý đăng nhập, bạn có thể chuyển đến trang chính hoặc thực hiện các hành động khác
     // Ví dụ: history.push('/dashboard');
   };
@@ -60,6 +69,29 @@ const App = () => {
             {/* Thêm nội dung giới thiệu */}
           </div>
         )}
+        {currentPage === 'products' && (
+          <div>
+            <h1>Giới thiệu</h1>
+            <p>Đây là trang đổ dữ liệu sản phẩm.</p>
+            <Steps
+    size="small"
+    current={1}
+    items={[
+      {
+        title: 'Finished',
+      },
+      {
+        title: 'In Progress',
+      },
+      {
+        title: 'Waiting',
+      },
+    ]}
+  />
+
+            {/* Thêm nội dung giới thiệu */}
+          </div>
+        )}
       </Content>
       <Footer style={{ position: 'fixed', bottom: 0, width: '100%', textAlign: 'center' }}>
         Bản quyền ©2024. Trang bán hàng. All rights reserved.
@@ -92,7 +124,7 @@ const App = () => {
         onCancel={() => setRegisterVisible(false)}
         footer={[
           <Button key="cancel" onClick={() => setRegisterVisible(false)}>Hủy</Button>,
-          <Button key="register" type="primary" onClick={handleLogin}>Đăng nhập</Button>,
+          <Button key="register" type="primary" onClick={handleRe}>Đăng ký</Button>,
         ]}
       >
         <Input
@@ -105,6 +137,12 @@ const App = () => {
           placeholder="email của m"
           value={password}
           onChange={(e) => setEmail(e.target.value)}
+          style={{ marginBottom: 16 }}
+        />
+        <Input
+          placeholder="địa chỉ "
+          value={password}
+          onChange={(e) => setAddress(e.target.value)}
           style={{ marginBottom: 16 }}
         />
         <Input
