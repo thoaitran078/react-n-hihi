@@ -104,7 +104,7 @@ const App = () => {
         {currentPage === 'about' && (
           <div>
             <h1>Giới thiệu</h1>
-            <p>Xin chào! dưới Đây là trang layout phục vụ admin , gắn đỡ.</p>
+            <p>Xin chào! dưới Đây là trang layout phục vụ admin , gắn đỡ nè.</p>
             <Layout
           style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}
         >
