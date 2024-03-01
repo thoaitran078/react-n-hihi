@@ -6,6 +6,8 @@ import 'antd/dist/reset.css';
 //import type { MenuProps } from 'antd';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb,  theme } from 'antd';
+
+import App2 from './App2';
 const { Header, Content, Footer, Sider } = Layout;
 //const { Header, Content, Footer } = Layout;
 ///////////////*
@@ -39,7 +41,7 @@ const App = () => {
   } = theme.useToken();
 
 //
-
+  const [loggedIn, setLoggedIn] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [registerVisible, setRegisterVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -48,13 +50,26 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [currentPage, setCurrentPage] = useState('home');
-
+/*
   const handleLogin = () => {
     // Xử lý đăng nhập tại đây
     console.log('Đăng nhập với tên người dùng:', username, 'và mật khẩu:', password);
     // Sau khi xử lý đăng nhập, bạn có thể chuyển đến trang chính hoặc thực hiện các hành động khác
     // Ví dụ: history.push('/dashboard');
   };
+  */
+  //admin
+  const handleLogin = () => {
+    if (username === 'Thoai' && password === 'hihi') {
+      setLoggedIn(true);
+    } else {
+      alert('SAI RÒIIIIIIIIIIIIII , tên user là Thoai , pass là hihi');
+    }
+  };
+
+  if (loggedIn) {
+    return <App2 />;
+  }
 
   const handleRe = () => {
     // Xử lý đăng nhập tại đây
