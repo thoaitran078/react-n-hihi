@@ -50,7 +50,9 @@ const App = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [currentPage, setCurrentPage] = useState('home');
+  const [redirectToApp2, setRedirectToApp2] = useState(false);
 /*
+
   const handleLogin = () => {
     // Xử lý đăng nhập tại đây
     console.log('Đăng nhập với tên người dùng:', username, 'và mật khẩu:', password);
@@ -62,13 +64,21 @@ const App = () => {
   const handleLogin = () => {
     if (username === 'Thoai' && password === 'hihi') {
       setLoggedIn(true);
+      setRedirectToApp2(true);
     } else {
       alert('SAI RÒIIIIIIIIIIIIII , tên user là Thoai , pass là hihi');
     }
   };
+  const handleBack = () => {
+    setRedirectToApp2(false);
+  };
 
   if (loggedIn) {
-    return <App2 />;
+    if (redirectToApp2) {
+      return <App2 onBack={handleBack} />;
+    } else {
+      return <App />;
+    }
   }
 
   const handleRe = () => {

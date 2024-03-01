@@ -17,17 +17,17 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
+  getItem('LOẠI SẢN PHẨM 1', '1', <PieChartOutlined />),
+  getItem('SẢN PHẨM 2', '2', <DesktopOutlined />),
   getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+    getItem('THOẠI', '3'),
+    getItem('TÂN', '4'),
+    getItem('PHÚC', '5'),
   ]),
   getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
   getItem('Files', '9', <FileOutlined />),
 ];
-const App = () => {
+const App = ({ onBack }) => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -71,6 +71,7 @@ const App = () => {
             }}
           >
             Bill is a cat.
+            <button onClick={onBack}>Quay lại</button>
           </div>
         </Content>
         <Footer
