@@ -3,6 +3,8 @@ import { Layout, Menu, Modal, Input, Button } from 'antd';
 import 'antd/dist/reset.css';
 //import { Steps } from 'antd';
 //layout
+import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import { Avatar, List, Space } from 'antd';
 //import type { MenuProps } from 'antd';
 import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb,  theme } from 'antd';
@@ -18,6 +20,24 @@ const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
   label: `nav ${key}`,
 }));
 */
+//sản phẩm
+const data = Array.from({ length: 23 }).map((_, i) => ({
+  href: 'https://ant.design',
+  title: `Sản phẩm số ${i}`,
+  avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`,
+  description:
+    'Thông tin chi tiết.',
+  content:
+    '300.000 VND',
+}));
+
+const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
+////sản phẩm
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1);
   return {
@@ -151,18 +171,59 @@ const App = () => {
           <div>
             <h1>Sản phẩm</h1>
             <p>Đây là trang đổ dữ liệu sản phẩm đó mấy th ***.</p>
-            
+            <List
+    itemLayout="vertical"
+    size="large"
+    pagination={{
+      onChange: (page) => {
+        console.log(page);
+      },
+      pageSize: 3,
+    }}
+    dataSource={data}
+    /*footer={
+      <div>
+        <b>ant design</b> footer part
+      </div>
+    }*/
+    renderItem={(item) => (
+      <List.Item
+        key={item.title}
+        actions={[
+          <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+          <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+          <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+        ]}
+        extra={
+          <img
+            width={272}
+            alt="logo"
+            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+          />
+        }
+      >
+        <List.Item.Meta
+          avatar={<Avatar src={item.avatar} />}
+          title={<a href={item.href}>{item.title}</a>}
+          description={item.description}
+        />
+        {item.content}
+      </List.Item>
+    )}
+  />
 
-            {/* Thêm nội dung giới thiệu */}
+
+            {/* Thêm nội  */}
           </div>
         )}
 
 
       </Content>
-      
+      {/*
       <Footer style={{ position: 'fixed', bottom: 0, width: '100%', textAlign: 'center' }}>
         Bản quyền ©2024. Trang bán hàng. All rights reserved.
       </Footer>
+      */}
       <Modal
         title="Đăng nhập"
         visible={loginVisible}
