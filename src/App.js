@@ -213,7 +213,7 @@ const App = () => {
   />
 
 
-            {/* Thêm nội  */}
+            {/* Thêm nội dung giới thiệu */}
           </div>
         )}
 
