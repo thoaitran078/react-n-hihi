@@ -3,14 +3,13 @@ import { Layout, Menu, Modal, Input, Button } from 'antd';
 import 'antd/dist/reset.css';
 //import { Steps } from 'antd';
 //layout
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space } from 'antd';
 //import type { MenuProps } from 'antd';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb,  theme } from 'antd';
+//import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
+
+//import { Breadcrumb } from 'antd';
 
 import App2 from './App2';
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer } = Layout;
 //const { Header, Content, Footer } = Layout;
 ///////////////*
 
@@ -21,44 +20,15 @@ const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
 }));
 */
 //sản phẩm
-const data = Array.from({ length: 23 }).map((_, i) => ({
-  href: 'https://ant.design',
-  title: `Sản phẩm số ${i}`,
-  avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`,
-  description:
-    'Thông tin chi tiết.',
-  content:
-    '300.000 VND',
-}));
 
-const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+
+
 ////sản phẩm
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index + 1);
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `MỤC ${key}`,
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
+
 
 //////
 const App = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+  
 
 //
   const [loggedIn, setLoggedIn] = useState(false);
@@ -119,8 +89,8 @@ const App = () => {
         <div className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} onClick={({ key }) => handleMenuClick(key)}>
           <Menu.Item key="home">Trang chủ</Menu.Item>
-          <Menu.Item key="about">Giới thiệu</Menu.Item>
-          <Menu.Item key="products">Sản phẩm</Menu.Item>
+          <Menu.Item key="about">Điểm Danh</Menu.Item>
+          <Menu.Item key="products">Thông tin</Menu.Item>
         </Menu>
         <div style={{ float: 'right' }}>
           <Menu theme="dark" mode="horizontal" selectable={false}>
@@ -129,16 +99,18 @@ const App = () => {
           </Menu>
         </div>
       </Header>
-      <Breadcrumb style={{ margin: '16px 0',padding: '15px' ,text: '500px' }}>
+      {/*<Breadcrumb style={{ margin: '16px 0',padding: '15px' ,text: '500px' }}>
           <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
           <Breadcrumb.Item>1</Breadcrumb.Item>
           <Breadcrumb.Item>2</Breadcrumb.Item>
-        </Breadcrumb>
+  </Breadcrumb>*/}
+        
       <Content style={{ padding: '0px' }}>
         
         {currentPage === 'home' && (
+          
           <div>
-            <h1>Chào mừng đến với trang bán hàng của Thoại</h1>
+            <h1>Chào mừng đến với trang quản lý sinh viên bằng qr của Thoại</h1>
             <p>Xin chào! Đây là trang giao diện của Thoại.</p>
             <p>Hãy khám phá các sản phẩm tuyệt vời mà Thoại cung cấp.</p>
             <div className="product-list">
@@ -149,68 +121,16 @@ const App = () => {
         {currentPage === 'about' && (
           <div>
             <h1>Giới thiệu</h1>
-            <p>Xin chào! dưới Đây là trang layout phục vụ admin , gắn đỡ nèe.</p>
-            <Layout
-          style={{ padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}
-        >
-          <Sider style={{ background: colorBgContainer }} width={200}>
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{ height: '100%' }}
-              items={items2}
-            />
-          </Sider>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>Content</Content>
-        </Layout>
+            <p>Xin chào! dưới Đây là giao diện hiển thị điểm danh cụ thể.</p>
+            
             {/* Thêm nội dung giới thiệu */}
           </div>
         )}
         {currentPage === 'products' && (
           <div>
-            <h1>Sản phẩm</h1>
-            <p>Đây là trang đổ dữ liệu sản phẩm đó mấy th ***.</p>
-            <List
-    itemLayout="vertical"
-    size="large"
-    pagination={{
-      onChange: (page) => {
-        console.log(page);
-      },
-      pageSize: 3,
-    }}
-    dataSource={data}
-    /*footer={
-      <div>
-        <b>ant design</b> footer part
-      </div>
-    }*/
-    renderItem={(item) => (
-      <List.Item
-        key={item.title}
-        actions={[
-          <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-          <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-          <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
-        ]}
-        extra={
-          <img
-            width={272}
-            alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-          />
-        }
-      >
-        <List.Item.Meta
-          avatar={<Avatar src={item.avatar} />}
-          title={<a href={item.href}>{item.title}</a>}
-          description={item.description}
-        />
-        {item.content}
-      </List.Item>
-    )}
-  />
+            <h1>Quản lý thông tin</h1>
+            <p>Đây là trang hiển thị thông tin tài khoản của sinh viên nè.</p>
+      
 
 
             {/* Thêm nội dung giới thiệu */}
@@ -219,11 +139,11 @@ const App = () => {
 
 
       </Content>
-      {/*
+      {
       <Footer style={{ position: 'fixed', bottom: 0, width: '100%', textAlign: 'center' }}>
-        Bản quyền ©2024. Trang bán hàng. All rights reserved.
+        Bản quyền ©2024. Trang độc quyền của Thoại. All rights reserved.
       </Footer>
-      */}
+      }
       <Modal
         title="Đăng nhập"
         visible={loginVisible}
