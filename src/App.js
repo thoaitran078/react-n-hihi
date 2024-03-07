@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { Layout, Menu, Modal, Input, Button } from 'antd';
 import 'antd/dist/reset.css';
 //import { Steps } from 'antd';
+
 //layout
 import { CopyOutlined } from '@ant-design/icons';
 import {
@@ -47,7 +48,27 @@ const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
 
 //////
 const App = () => {
-  
+  const videoRef = useRef(null);
+  const streamRef = useRef(null);
+
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      videoRef.current.srcObject = stream;
+      streamRef.current = stream;
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+    }
+  };
+  const stopCamera = () => {
+    if (streamRef.current) {
+      const tracks = streamRef.current.getTracks();
+      tracks.forEach((track) => track.stop());
+    }
+    videoRef.current.srcObject = null;
+    streamRef.current = null;
+  };
+
 
 //
   const [loggedIn, setLoggedIn] = useState(false);
@@ -132,6 +153,11 @@ const App = () => {
             <h1>Chào mừng đến với trang quản lý sinh viên bằng qr của Thoại</h1>
             <p>Xin chào! Đây là trang giao diện của Thoại.</p>
             <p>Hãy khám phá các sản phẩm tuyệt vời mà Thoại cung cấp.</p>
+            <div>
+      <button onClick={startCamera}>Start Camera</button>
+      <button onClick={stopCamera}>Stop Camera</button>
+      <video ref={videoRef} autoPlay playsInline />
+    </div>
             <div className="product-list">
               {/* Hiển thị danh sách sản phẩm */}
             </div>
@@ -410,5 +436,7 @@ const App = () => {
     </Layout>
   );
 };
+
+
 
 export default App;
