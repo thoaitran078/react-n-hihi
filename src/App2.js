@@ -43,7 +43,7 @@ const App = ({ onBack }) => {
   return (
     <Layout
     
-      style={{
+      style={{  
         minHeight: '100vh',
       }}
     >
