@@ -25,7 +25,7 @@ import {
 
 //import { Breadcrumb } from 'antd';
 
-import App2 from './App2';
+import App2 from './admin';
 const { Header, Content, Footer } = Layout;
 //const { Header, Content, Footer } = Layout;
 const { Option } = Select;
